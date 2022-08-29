@@ -1,40 +1,55 @@
 package com.bantads.gerente.bantadsgerente.model;
 
 import java.io.Serializable;
+import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="gerente")
 public class Gerente implements Serializable {
-    private int id;
-    private int idExternoUsuario;
+    private UUID id;
+    private UUID idExternoUsuario;
     private String nome;
     private String cpf;
+    private UUID saga;
 
     public Gerente() {
         super();
     }
 
-    public Gerente(int id, int idExternoUsuario, String nome, String cpf) {
+    public Gerente(UUID id, UUID idExternoUsuario, String nome, String cpf, UUID saga) {
+        super();
         this.id = id;
         this.idExternoUsuario = idExternoUsuario;
         this.nome = nome;
         this.cpf = cpf;
+        this.saga = saga;
     }
 
-    public int getId() {
+    @Id
+    @Column(name="id")
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public int getIdExternoUsuario() {
+    @Column(name="idexternousuario")
+    public UUID getIdExternoUsuario() {
         return idExternoUsuario;
     }
 
-    public void setIdExternoUsuario(int idExternoUsuario) {
+    public void setIdExternoUsuario(UUID idExternoUsuario) {
         this.idExternoUsuario = idExternoUsuario;
     }
 
+    @Column(name="nome")
     public String getNome() {
         return nome;
     }
@@ -43,12 +58,22 @@ public class Gerente implements Serializable {
         this.nome = nome;
     }
 
+    @Column(name="cpf")
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    @Column(name="saga")
+    public UUID getSaga() {
+        return saga;
+    }
+
+    public void setSaga(UUID saga) {
+        this.saga = saga;
     }
 
 }
