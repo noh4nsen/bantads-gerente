@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.bantads.gerente.bantadsgerente.data.GerenteRepository;
 import com.bantads.gerente.bantadsgerente.model.Gerente;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
@@ -20,7 +18,7 @@ public class ConsumerCadastro {
     private GerenteRepository gerenteRepository;
 
     @RabbitListener(queues = "autocadastro-gerente")
-    public void receive(@Payload String json) throws JsonMappingException, JsonProcessingException {
+    public void receive(@Payload String json) {
         try{
             Gerente gerente = objectMapper.readValue(json, Gerente.class);
             gerenteRepository.save(gerente);            
