@@ -6,6 +6,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.Autenticacao.SenderAutenticacao;
+import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.GerenteConta.SenderGerenteConta;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @EnableRabbit
@@ -23,5 +25,15 @@ public class BantadsGerenteApplication {
 	@Bean
 	public ObjectMapper objectMapper() {
 		return new ObjectMapper();
+	}
+
+	@Bean
+	public SenderAutenticacao senderA() {
+		return new SenderAutenticacao();
+	}
+
+	@Bean 
+	public SenderGerenteConta senderG() {
+		return new SenderGerenteConta();
 	}
 }
