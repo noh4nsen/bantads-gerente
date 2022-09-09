@@ -1,4 +1,4 @@
-package com.bantads.gerente.bantadsgerente.services.Consumer;
+package com.bantads.gerente.bantadsgerente.services.Consumer.AutoCadastro;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
