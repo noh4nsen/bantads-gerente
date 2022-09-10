@@ -9,7 +9,7 @@ import com.bantads.gerente.bantadsgerente.model.Gerente;
 
 public interface GerenteRepository extends JpaRepository<Gerente, UUID> {
     public Gerente findByIdExternoUsuario(UUID idExternoUsuario);
-
+    public boolean existsByCpf(String cpf);
     @Transactional
     public Long deleteBySaga(UUID saga);
 }
