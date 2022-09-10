@@ -79,6 +79,8 @@ public class GerenteController {
         try {
         	Optional<Gerente> gerenteOp = gerenteRepository.findById(id);
         	if (gerenteOp.isPresent()){
+                if(gerenteRepository.existsByCpf(gerenteUp.getCpf()))
+                    return ResponseEntity.status(409).build();
                 Gerente gerente = gerenteOp.get();
                 gerente.setNome(gerenteUp.getNome());
                 gerente.setCpf(gerenteUp.getCpf());
