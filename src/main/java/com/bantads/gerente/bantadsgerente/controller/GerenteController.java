@@ -59,6 +59,21 @@ public class GerenteController {
         }
     }
     
+    @GetMapping("/por-cpf/{cpf}")
+    public ResponseEntity<Gerente> getGerentePorUsuario(@PathVariable String cpf) {
+        try {
+            Gerente gerente = gerenteRepository.findByCpf(cpf);
+
+            if (gerente != null) {
+                return ResponseEntity.ok(gerente);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(500).build();
+        }
+    }
+    
     @PutMapping("/{id}")
     public ResponseEntity<Gerente> putGerente(@PathVariable UUID id, @RequestBody Gerente gerenteUp) {
         try {
