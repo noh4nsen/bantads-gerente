@@ -13,9 +13,9 @@ public class SenderRollbackDeleteUsuario {
     private RabbitTemplate template;
 
     @Autowired
-    private Queue queueRollbackDeleteUsuario;
+    private Queue queueDeleteUsuarioRollback;
 
     public void send(UUID id) {
-        this.template.convertAndSend(this.queueRollbackDeleteUsuario.getName(), id);
+        this.template.convertAndSend(this.queueDeleteUsuarioRollback.getName(), id);
     }
 }
