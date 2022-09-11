@@ -78,9 +78,11 @@ public class GerenteController {
     public ResponseEntity<Gerente> putGerente(@PathVariable UUID id, @RequestBody Gerente gerenteUp) {
         try {
         	Optional<Gerente> gerenteOp = gerenteRepository.findById(id);
-        	if (gerenteOp.isPresent()){
-                if(gerenteRepository.existsByCpf(gerenteUp.getCpf()))
+        	if (gerenteOp.isPresent()) {
+        		Optional<Gerente> validateGerente = gerenteRepository.findByLoginAndSenha(gerenteUp.getCpf(), gerenteUp.getId());
+                if(validateGerente.isPresent())
                     return ResponseEntity.status(409).build();
+                
                 Gerente gerente = gerenteOp.get();
                 gerente.setNome(gerenteUp.getNome());
                 gerente.setCpf(gerenteUp.getCpf());
