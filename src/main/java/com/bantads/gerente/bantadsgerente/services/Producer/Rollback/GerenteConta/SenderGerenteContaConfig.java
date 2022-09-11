@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SenderGerenteContaConfig {
-    @Value("rollback-autocadastro-gerente-conta")
+    @Value("autocadastro-gerente-conta-rollback")
     private String queueRollbackAutocadastroGerenteConta;
 
     @Bean
