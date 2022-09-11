@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 import com.bantads.gerente.bantadsgerente.data.GerenteRepository;
 import com.bantads.gerente.bantadsgerente.model.Gerente;
 import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.Autenticacao.SenderDeleteUsuario;
+import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.Autenticacao.SenderRollbackDeleteUsuario;
+import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.GerenteConta.SenderRollbackDeleteGerenteConta;
 
 @Component
 public class ConsumerDeletar {
@@ -19,6 +21,12 @@ public class ConsumerDeletar {
 
     @Autowired
     private SenderDeleteUsuario senderDeleteUsuario;
+
+    @Autowired
+    private SenderRollbackDeleteUsuario senderRollbackDeleteUsuario;
+
+    @Autowired
+    private SenderRollbackDeleteGerenteConta senderRollbackDeleteGerenteConta;
 
     @RabbitListener(queues = "delete-gerente")
     public void receive(@Payload String json) {
@@ -31,6 +39,11 @@ public class ConsumerDeletar {
             gerenteRepository.save(gerente);
         } catch (Exception e) {
             System.out.println(e);
+            UUID id = UUID.fromString(json);
+            Optional<Gerente> gerenteOp = gerenteRepository.findById(id);
+            Gerente gerente = gerenteOp.get();
+            senderRollbackDeleteUsuario.send(gerente.getIdExternoUsuario());
+            senderRollbackDeleteGerenteConta.send(gerente.getId());
         }
     }
 }

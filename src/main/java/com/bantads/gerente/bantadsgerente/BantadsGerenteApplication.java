@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Bean;
 
 import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.Autenticacao.SenderAutenticacao;
 import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.Autenticacao.SenderDeleteUsuario;
+import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.Autenticacao.SenderRollbackDeleteUsuario;
 import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.GerenteConta.SenderGerenteConta;
+import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.GerenteConta.SenderRollbackDeleteGerenteConta;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @EnableRabbit
@@ -41,5 +43,15 @@ public class BantadsGerenteApplication {
 	@Bean
 	public SenderDeleteUsuario senderDu(){
 		return new SenderDeleteUsuario();
+	}
+
+	@Bean
+	public SenderRollbackDeleteUsuario senderRdu(){
+		return new SenderRollbackDeleteUsuario();
+	}
+
+	@Bean
+	public SenderRollbackDeleteGerenteConta senderRdg(){
+		return new SenderRollbackDeleteGerenteConta();
 	}
 }
