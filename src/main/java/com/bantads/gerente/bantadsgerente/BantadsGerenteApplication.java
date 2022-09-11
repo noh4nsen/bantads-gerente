@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.Autenticacao.SenderAutenticacao;
+import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.Autenticacao.SenderDeleteUsuario;
 import com.bantads.gerente.bantadsgerente.services.Producer.Rollback.GerenteConta.SenderGerenteConta;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -35,5 +36,10 @@ public class BantadsGerenteApplication {
 	@Bean 
 	public SenderGerenteConta senderG() {
 		return new SenderGerenteConta();
+	}
+
+	@Bean
+	public SenderDeleteUsuario senderDu(){
+		return new SenderDeleteUsuario();
 	}
 }
