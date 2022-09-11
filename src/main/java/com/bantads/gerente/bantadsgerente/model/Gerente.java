@@ -9,29 +9,31 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="gerente")
+@Table(name = "gerente")
 public class Gerente implements Serializable {
     private UUID id;
     private UUID idExternoUsuario;
     private String nome;
     private String cpf;
+    private boolean ativo;
     private UUID saga;
 
     public Gerente() {
         super();
     }
 
-    public Gerente(UUID id, UUID idExternoUsuario, String nome, String cpf, UUID saga) {
+    public Gerente(UUID id, UUID idExternoUsuario, String nome, String cpf, boolean ativo, UUID saga) {
         super();
         this.id = id;
         this.idExternoUsuario = idExternoUsuario;
         this.nome = nome;
         this.cpf = cpf;
+        this.ativo = ativo;
         this.saga = saga;
     }
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     public UUID getId() {
         return id;
     }
@@ -40,7 +42,7 @@ public class Gerente implements Serializable {
         this.id = id;
     }
 
-    @Column(name="idexternousuario")
+    @Column(name = "idexternousuario")
     public UUID getIdExternoUsuario() {
         return idExternoUsuario;
     }
@@ -49,7 +51,7 @@ public class Gerente implements Serializable {
         this.idExternoUsuario = idExternoUsuario;
     }
 
-    @Column(name="nome")
+    @Column(name = "nome")
     public String getNome() {
         return nome;
     }
@@ -58,7 +60,7 @@ public class Gerente implements Serializable {
         this.nome = nome;
     }
 
-    @Column(name="cpf")
+    @Column(name = "cpf")
     public String getCpf() {
         return cpf;
     }
@@ -67,13 +69,22 @@ public class Gerente implements Serializable {
         this.cpf = cpf;
     }
 
-    @Column(name="saga")
+    @Column(name = "saga")
     public UUID getSaga() {
         return saga;
     }
 
     public void setSaga(UUID saga) {
         this.saga = saga;
+    }
+
+    @Column(name = "ativo")
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
     }
 
 }

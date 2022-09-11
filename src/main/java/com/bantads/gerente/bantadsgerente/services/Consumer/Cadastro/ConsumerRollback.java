@@ -1,4 +1,4 @@
-package com.bantads.gerente.bantadsgerente.services.Consumer.AutoCadastro;
+package com.bantads.gerente.bantadsgerente.services.Consumer.Cadastro;
 
 import java.util.UUID;
 
