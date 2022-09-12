@@ -1,4 +1,4 @@
-package com.bantads.gerente.bantadsgerente.services.Consumer.AutoCadastro;
+package com.bantads.gerente.bantadsgerente.services.Consumer.Cadastro;
 
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +31,7 @@ public class ConsumerCadastro {
     public void receive(@Payload String json) throws JsonMappingException, JsonProcessingException {
         try{
             Gerente gerente = objectMapper.readValue(json, Gerente.class);
+            gerente.setAtivo(true);
             gerenteRepository.save(gerente);            
         } catch (Exception e) {
             System.out.println(e);
